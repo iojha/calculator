@@ -7,16 +7,26 @@ angular.module('myApp', ['ngMessages'])
 	   	$scope.counter = 0;
 	   	$scope.totalTip = 0;
 
+	   	//Add subtotal
 	   	$scope.getSubtotal = function(){
 	   		$scope.subtotal = $scope.mealPrice + (($scope.tax/100) * $scope.mealPrice);
 	   		return $scope.subtotal;
 	   	}
 
+
+	   	//Calculate the Tip from percentage entered
 	   	$scope.getTip = function(){
 	   		$scope.tipCash = (($scope.tip/100) * $scope.mealPrice);
 	   		return $scope.tipCash;
 	   	}
 
+	   	$scope.cancel =  function(){
+	   		$scope.mealPrice = 0;
+	   		$scope.tip = 0;
+	   		$scope.tax = 0;
+	   	}
+
+	   	//Process all functions 
 	   	$scope.processAll = function(){
 	   		$scope.getSubtotal();
 	   		$scope.getTip();
@@ -24,6 +34,7 @@ angular.module('myApp', ['ngMessages'])
 	   		$scope.totalTip += ($scope.getTip());	   	
 	   	}
 
+	   	//Reset Button
 	   	$scope.reset =  function(){
 	   		$scope.mealPrice=0;
 	   		$scope.tax=0;
