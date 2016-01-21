@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Waitstaff Calculator</title>
+	
+	<!--Style Sheets-->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!--Scripts-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.4.8/angular-messages.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+
+</head>
+
+<body>
+	<div class="container" ng-controller="mainCtrl">
+		
+		<!-- Heading -->
+		<section id="heading" class="xs-col-12">
+			<div class="row">
+					<h1>Waitstaff Calculator</h1>
+			</div>
+		</section>
+
+		<!-- Meal details-->
+		<section id="meal-details" class="col-sm-6">
+			<h4>Meal Price</h4>
+			Base Meal Price:  $<input type="number" ng-model="mealPrice" required/><br/>
+			Tax rate: <input type="number" ng-model="tax" /><br/>
+			Tip % <input type="number" ng-model="tip"/><br/>
+			<div class="row"><br />
+				<div class="col-sm-6">
+					<button class="btn btn-primary" ng-click="processAll()">Submit</button>
+					<button class="btn btn-info">Cancel</button>
+				</div>
+			</div>
+		</section>
+		
+		<!--Right section-->
+
+		<section class="col-sm-4">
+
+		<!-- Customer Charges Module-->
+			<div id="customer-charges" class="col-sm-12" >
+				<h4>Customer Charges</h4>
+				Subtotal: {{ subtotal | currency  }}<br />
+				Tip: {{ tip | currency }}<br />
+				Total: {{ subtotal + tip | currency }}
+			</div>
+			
+
+			<!-- My Earnings Module-->
+			<div id="earnings"class="col-sm-12">
+			<h4>My Earnings</h4>
+				Tip total: {{ totalTip | currency }}<br />
+				Meal count: {{ counter }}<br />
+				Average tip per meal: {{ (totalTip/counter) | currency }} <br/>
+			</div>
+		</div>
+
+	</div>
+
+	
+</body>
+</html>
